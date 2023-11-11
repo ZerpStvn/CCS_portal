@@ -36,7 +36,6 @@
                                     <option value="W">Wednesday</option>
                                     <option value="TH">Thursday</option>
                                     <option value="F">Friday</option>
-                                    <!-- Add options for other days of the week -->
                                 </select>
                                 <label for="" class="control-label">Start Time</label>
                                 <input class="form-control form-control-sm" type="time" name="time">
