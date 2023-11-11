@@ -78,7 +78,7 @@
                 <p>List</p>
               </a>
             </li>
-            
+
             <li class="nav-item">
               <a href="./index.php?page=archive" class="nav-link tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
@@ -110,7 +110,39 @@
             </a>
           </li>
         -->
+
         <?php endif; ?>
+        
+        <?php if ($_SESSION['login_type'] == 2 || $_SESSION['login_type'] == 3): ?>
+          <li class="nav-item">
+            <a href="./index.php?page=borrowing_history" class="nav-link tree-item">
+              <i class="nav-icon fas fa-calendar"></i>
+              <p>Borrowing History</p>
+            </a>
+          </li>
+
+        <?php endif ?>
+        <?php if ($_SESSION['login_type'] == 2): ?>
+          <li class="nav-item dropdown">
+            <a href="./index.php?page=usermanual" class="nav-link nav-dtr">
+              <i class="nav-icon fas fa-folder"></i>
+              <p>
+                User Manual
+              </p>
+            </a>
+          </li>
+        <?php endif ?>
+        <?php if ($_SESSION['login_type'] == 2): ?>
+          
+          <li class="nav-item dropdown">
+            <a href="./index.php?page=schedule" class="nav-link nav-dtr">
+              <i class="nav-icon fas fa-calendar"></i>
+              <p>
+                Room Schedule
+              </p>
+            </a>
+          </li>
+        <?php endif ?>
         <?php if ($_SESSION['login_type'] == 1): ?>
           <li class="nav-item">
             <a href="#" class="nav-link nav-edit_user">
@@ -120,7 +152,7 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-      
+
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="./index.php?page=new_user" class="nav-link nav-new_user tree-item">
@@ -137,47 +169,47 @@
             </ul>
           </li>
           <li class="nav-item">
-          <a href="#" class="nav-link nav-edit_project nav-view_project">
-          <i class="nav-icon fas fa-user"></i>
-            <p>
-              Borrower
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <?php if ($_SESSION['login_type'] != 3 && $_SESSION['login_type'] != 2): ?>
-              <li class="nav-item">
-                <a href="./index.php?page=borrowing_history" class="nav-link tree-item">
-                  <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Borrowing History</p>
-                </a>
-              </li>
-
-            <?php endif; ?>
-            
-          <li class="nav-item">
-            
-            <a href="./index.php?page=borrower" class="nav-link nav-dtr">
-         
-              <i class="fas fa-angle-right nav-icon"></i>
+            <a href="#" class="nav-link nav-edit_project nav-view_project">
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Borrower
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-          </li>
-            <!-- <li class="nav-item">
+            <ul class="nav nav-treeview">
+              <?php if ($_SESSION['login_type'] != 3 && $_SESSION['login_type'] != 2): ?>
+                <li class="nav-item">
+                  <a href="./index.php?page=borrowing_history" class="nav-link tree-item">
+                    <i class="fas fa-angle-right nav-icon"></i>
+                    <p>Borrowing History</p>
+                  </a>
+                </li>
+
+              <?php endif; ?>
+
+              <li class="nav-item">
+
+                <a href="./index.php?page=borrower" class="nav-link nav-dtr">
+
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>
+                    Borrower
+                  </p>
+                </a>
+              </li>
+              <!-- <li class="nav-item">
               <a href="./index.php?page=brand" class="nav-link tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Brand</p>
               </a>
             </li> -->
 
-          </ul>
-        </li>
-          
+            </ul>
+          </li>
+
           <li class="nav-item dropdown">
             <a href="./index.php?page=usermanual" class="nav-link nav-dtr">
-            <i class="nav-icon fas fa-folder"></i>
+              <i class="nav-icon fas fa-folder"></i>
               <p>
                 User Manual
               </p>
@@ -185,7 +217,7 @@
           </li>
           <li class="nav-item dropdown">
             <a href="./index.php?page=schedule" class="nav-link nav-dtr">
-            <i class="nav-icon fas fa-calendar"></i>
+              <i class="nav-icon fas fa-calendar"></i>
               <p>
                 Room Schedule
               </p>

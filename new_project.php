@@ -43,7 +43,7 @@
         	<?php if($_SESSION['login_type'] == 1 ): ?>
            <div class="col-md-6">
             <div class="form-group">
-              <label for="" class="control-label">Staff/Instructor</label>
+              <label for="" class="control-label">Instructor</label>
               <select class="form-control form-control-sm select2" name="manager_id">
               	<option></option>
               	<?php 

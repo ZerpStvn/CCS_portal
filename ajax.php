@@ -82,4 +82,5 @@ if($action == 'get_report'){
 		echo $get;
 }
 ob_end_flush();
+
 ?>

@@ -1,9 +1,10 @@
-<?php if ($_SESSION['login_type'] != 3 && $_SESSION['login_type'] != 2): ?>
+<?php if ($_SESSION['login_type'] != 3): ?>
     <div style="display:flex">
         <button id="addbtn" class="btn btn-primary mr-2">Add schedule</button>
         <button style="margin-left:20px" id="clsbtn" class="btn btn-primary mr-2">Close</button>
 
-        <select name="" id="room_select">
+        <select name="" style=" width:150px;
+        margin-left:340px" id="room_select">
             <option value="MTCL1">MTCL 1</option>
             <option value="MTCL2">MTCL 2</option>
             <option value="MTCL3">MTCL 3</option>
@@ -249,25 +250,25 @@
     })
 </script>
 <script>
-    $(document).ready(function() {
-      // Initial page load
-      filterTable();
-
-      // Filter table on select change
-      $('#room_select').change(function() {
+    $(document).ready(function () {
+        // Initial page load
         filterTable();
-      });
 
-      function filterTable() {
-        var selectedRoom = $('#room_select').val();
+        // Filter table on select change
+        $('#room_select').change(function () {
+            filterTable();
+        });
 
-        // Show all rows initially
-        $('#schedule_table tr').show();
+        function filterTable() {
+            var selectedRoom = $('#room_select').val();
 
-        // Hide rows that don't match the selected room
-        if (selectedRoom !== '') {
-          $('#schedule_table tr').not(':has(#roomid:contains(' + selectedRoom + '))').hide();
+            // Show all rows initially
+            $('#schedule_table tr').show();
+
+            // Hide rows that don't match the selected room
+            if (selectedRoom !== '') {
+                $('#schedule_table tr').not(':has(#roomid:contains(' + selectedRoom + '))').hide();
+            }
         }
-      }
     });
-  </script>
+</script>
