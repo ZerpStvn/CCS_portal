@@ -55,7 +55,6 @@
                             <input type="text" name="sbj" class="form-control form-control-sm">
                         </div>
 
-                        <!-- category list view -->
                     </div>
 
                     <div class="col-md-6">
