@@ -75,11 +75,11 @@
 						<div class="form-group user-role">
 							<label for="" class="control-label ">User Role</label>
 							<select name="typeval" id="typeval" class="custom-select custom-select-sm">
-								<option value="">select
+								<option value="">Select
 								</option>
 								<option value="ojt">On the Job Training
 								</option>
-								<option value="wst">working student</option>
+								<option value="wst">Working Student</option>
 							</select>
 						</div>
 						<div class="form-group wstview">
