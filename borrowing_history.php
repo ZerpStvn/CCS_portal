@@ -20,10 +20,11 @@
 								<th>Serial number</th>
 								<th>Date borrowed</th>
 								<th>Date Returned</th>
-								
-								<?php if($_SESSION['login_type'] == 1): ?>
-								<th>Action</th>
-								<?php endif?>
+								<th>Reason</th>
+
+								<?php if ($_SESSION['login_type'] == 1): ?>
+									<th>Action</th>
+								<?php endif ?>
 							</tr>
 						</thead>
 						<tbody>
@@ -61,7 +62,12 @@
 											<?php echo $row['returndate'] ?>
 										</b>
 									</td>
-									<?php if($_SESSION['login_type'] == 1): ?>
+									<td>
+										<b>
+											<?php echo $row['reason'] ?>
+										</b>
+									</td>
+									<?php if ($_SESSION['login_type'] == 1): ?>
 										<td>
 											<style>
 												.btn-primary {

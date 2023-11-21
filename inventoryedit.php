@@ -1,6 +1,6 @@
-<div class="form-group text-right">
+<!-- <div class="form-group text-right">
     <button type="button" class="btn btn-primary" id="editButton">Edit Details</button>
-</div>
+</div> -->
 
 <?php
 include 'db_connect.php';

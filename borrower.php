@@ -55,24 +55,25 @@
 
                         <div class="form-group">
                             <label for="" class="control-label">Date borrowed</label>
-                            <input type="date" name="dateborrowed" class="form-control form-control-sm" value="<?php echo date('Y-m-d'); ?>">
+                            <input type="date" name="dateborrowed" class="form-control form-control-sm"
+                                value="<?php echo date('Y-m-d'); ?>">
 
                         </div>
                     </div>
                 </div>
                 <hr>
                 <style>
-  .btn-primary {
-    width: 80%;
-    max-width: 80px; 
-    transition: all 0.3s ease; /
-  }
+                    .btn-primary {
+                        width: 80%;
+                        max-width: 80px;
+                        transition: all 0.3s ease;/
+                    }
 
-  .btn-primary:hover {
-    transform: scale(1.1); 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
-  }
-</style>
+                    .btn-primary:hover {
+                        transform: scale(1.1);
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                    }
+                </style>
                 <div class="col-lg-12 text-right justify-content-center d-flex">
                     <button type="submit" class="btn btn-primary mr-2">Save</button>
                 </div>
@@ -115,7 +116,7 @@
                         <td><b>
                                 <?php echo $row['lastname'] ?>
                             </b></td>
-                            <td><b>
+                        <td><b>
                                 <?php echo $row['category'] ?>
                             </b></td>
                         <td><b>
@@ -124,7 +125,7 @@
                         <td><b>
                                 <?php echo $row['dateborrower'] ?>
                             </b></td>
-                            <td><b>
+                        <td><b>
                                 <?php echo $row['remark'] ?>
                             </b></td>
                         <td>
@@ -132,10 +133,35 @@
                                 Item</button>
                         </td>
                     </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+                    <!-- <div
+                        style=" position: absolute; top: 0; right: 0; left:0;margin:0 auto; background-color:grey;bottom:0;opacity: 100%;">
+                        <div
+                            style=" z-index:100;opacity: 100%; margin:10% 25%; width:50%;  height:50%; display:flex; flex-direction:column; align-items:center;justify-content:center; background-color:white">
+                            <form action="">
+                                <input type="hidden" name="id" value="<?php echo $id ?>">
+                                <textarea name="reason" id="" cols="30" rows="10" style="resize: none"
+                                    placeholder="Reason"></textarea>
+
+                                <div style="display:flex; gap: 30px; margin-top:10px;">
+                                    <input type="submit" name="submit" value="Submit">
+                                </div>
+                            </form>
+                        </div> -->
+        </div>
+    <?php endwhile; ?>
+    </tbody>
+    </table>
+</div>
+<div id="reasonModal" class="modal" style="width:50%; margin:0 25% ;">
+
+    <div class="modal-content " style="padding:50px">
+
+        <span style="font-size:23px" class="close">&times;</span>
+        <textarea id="reason" name="reason" rows="10" placeholder="Reasons"
+            style="margin:20px 0 30px 0; resize:none"></textarea>
+        <button id="submitReasonBtn">Submit</button>
     </div>
+</div>
 </div>
 
 <script>
@@ -164,49 +190,65 @@
                 }
             });
         });
+        // Close the modal if the close button is clicked
+        $('.close').click(function () {
+            $('#reasonModal').css('display', 'none');
+        });
+
         $('.return-btn').click(function () {
             var borrowerId = $(this).data('borrower-id');
 
-            $.ajax({
-                url: 'update_borrower.php', // PHP file to handle the update operation
-                method: 'POST',
-                data: {
-                    borrowerId: borrowerId
-                },
-                success: function (response) {
-                    // Handle the response from the PHP file
-                    alert(response); // You can display a success message or perform any other action
-                    location.reload();
-                },
-                error: function (xhr, status, error) {
-                    // Handle any errors that occur during the AJAX request
-                    console.log(xhr.responseText);
-                }
+            // Display the modal
+            $('#reasonModal').css('display', 'block');
+
+
+            // Handle the reason submission
+            $('#submitReasonBtn').click(function () {
+                var reason = $('#reason').val();
+
+                $.ajax({
+                    url: 'update_borrower.php',
+                    method: 'POST',
+                    data: {
+                        borrowerId: borrowerId,
+                        reason: reason
+                    },
+                    success: function (response) {
+                        // Handle the response from the PHP file
+                        alert(response); // You can display a success message or perform any other action
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle any errors that occur during the AJAX request
+                        console.log(xhr.responseText);
+                    }
+                });
+
+                // Close the modal after submission
+                $('#reasonModal').css('display', 'none');
             });
         });
 
-        // 
-      
 
-// When a Category is selected
-$('#categorySelect').change(function () {
-                var selectedCategory = $(this).val();
-                var serialNumberSelect = $('#serialNumberSelect');
+        // When a Category is selected
+        $('#categorySelect').change(function () {
+            var selectedCategory = $(this).val();
+            var serialNumberSelect = $('#serialNumberSelect');
 
-                if (selectedCategory) {
-                    $.ajax({
-                        type: 'POST',
-                        url: 'serialnum.php',
-                        data: { category: selectedCategory },
-                        success: function (response) {
-                            // Populate the Serial Number select with the fetched data
-                            serialNumberSelect.find('select').html(response);
-                        }
-                    });
-                } else {
-                    serialNumberSelect.find('select').empty(); // Clear the Serial Number select
-                }
-            });
+            if (selectedCategory) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'serialnum.php',
+                    data: { category: selectedCategory },
+                    success: function (response) {
+                        // Populate the Serial Number select with the fetched data
+                        serialNumberSelect.find('select').html(response);
+                    }
+                });
+            } else {
+                serialNumberSelect.find('select').empty(); // Clear the Serial Number select
+            }
+        });
     });
 
 
