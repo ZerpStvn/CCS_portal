@@ -138,6 +138,7 @@
                 <th>Quantity</th>
                 <th>Description</th>
                 <th>Date Added</th>
+                <th>View</th>
             </tr>
         </thead>
         <tbody>
@@ -177,6 +178,9 @@
                         <b>
                             <?php echo date('F j Y g:i a', strtotime($row['date_added'])); ?>
                         </b>
+                    </td>
+                    <td>
+                        <a href="./index.php?page=inventoryedit&id=<?php echo $row['id'] ?>">View</a>
                     </td>
                 </tr>
             <?php endwhile; ?>
