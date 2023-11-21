@@ -1,45 +1,45 @@
 <?php
-// Include your database connection file
 include 'db_connect.php';
 
-// Check if the form was submitted
 if (isset($_POST["submit"])) {
-    $uploadDirectory = 'uploads/'; 
+    $uploadDirectory = 'uploads/';
+    $filetype = $_POST['typefile'];
+    $teacher = $_POST['teacher'];
+    $subject = $_POST['subject'];
+    $datetime = $_POST['datetime'];
+
 
     if (!file_exists($uploadDirectory)) {
         mkdir($uploadDirectory, 0777, true);
     }
 
-    // Get the uploaded file details
     $fileName = basename($_FILES["fileToUpload"]["name"]);
     $targetFilePath = $uploadDirectory . $fileName;
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
-    // Check file size (adjust the size limit as needed)
-    if ($_FILES["fileToUpload"]["size"] > 5000000) { // 5 MB limit
+    if ($_FILES["fileToUpload"]["size"] > 5000000) {
         echo "Sorry, your file is too large.";
-        exit; // Terminate the script
+        exit;
     }
 
-    // Allow specific file formats (add more formats as needed)
-    $allowedFormats = ["jpg", "jpeg", "png", "gif", "doc", "docx", "pdf"];
+    $allowedFormats = ["jpg", "jpeg", "png", "gif", "doc", "docx", "pdf", "xls", "xlsx", "ppt", "pptx", "txt", "zip", "rar"];
+
     if (!in_array(strtolower($fileType), $allowedFormats)) {
         echo "Sorry, only JPG, JPEG, PNG, GIF, DOC, DOCX, and PDF files are allowed.";
-        exit; // Terminate the script
+        exit;
     }
 
-    // Move the uploaded file to the target directory
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFilePath)) {
-        // Store file details in the database (MySQL)
-        $sql = "INSERT INTO files (filename, filepath) VALUES (?, ?)";
+
+        $sql = "INSERT INTO files (filename, filepath, teacher, subj, ftype, date_time, dateup) VALUES (?, ?, ?, ?, ?, ?, NOW())";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $fileName, $targetFilePath);
+        $stmt->bind_param("ssssss", $fileName, $targetFilePath, $teacher, $subject, $filetype, $datetime);
+
 
         if ($stmt->execute()) {
-            // File details added to the database successfully
-            // Show an alert before reloading the page
-          
-          
+
+
+
             header("Location: index.php?page=usermanual");
             echo '<script>alert("File uploaded successfully!");</script>';
         } else {

@@ -152,7 +152,7 @@
 		// }type
 		$(".wstview").hide();
 		$(".user-role").hide();
-$(".ojtview").hide();
+		$(".ojtview").hide();
 
 		$("#type").on('change', function () {
 
