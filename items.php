@@ -126,6 +126,8 @@
         </div>
     </div>
 </div>
+<input type="text" id="searchtab" name="seachtab" placeholder="Seach" style="margin:40px 0 20px 0">
+
 <div class="card-body">
     <table class="table tabe-hover table-bordered" id="list">
         <thead>
@@ -152,16 +154,16 @@
                     <th class="text-center">
                         <?php echo $i++ ?>
                     </th>
-                    <td><b>
+                    <td id="monitorserch"><b>
                             <?php echo ucwords($row['monitor_sn']) ?>
                         </b></td>
-                    <td><b>
+                    <td id="modelseach"><b>
                             <?php echo ($row['model']) ?>
                         </b></td>
-                    <td><b>
+                    <td id="brandsearch"><b>
                             <?php echo $row['brand'] ?>
                         </b></td>
-                    <td><b>
+                    <td id="catsearch"><b>
                             <?php echo $row['category'] ?>
                         </b></td>
                     <td>
@@ -195,6 +197,25 @@
 </style>
 <script>
     $(document).ready(function () {
+
+        $("#searchtab").on("input", function () {
+            var searchText = $(this).val().toLowerCase();
+
+            $("#list tr:gt(0)").each(function () {
+                var title = $(this).find("#monitorserch").text().toLowerCase();
+                var subject = $(this).find("#modelseach").text().toLowerCase();
+                var brand = $(this).find("#brandsearch").text().toLowerCase();
+
+                var cat = $(this).find("#catsearch").text().toLowerCase();
+
+                if (cat.includes(searchText) || title.includes(searchText) || subject.includes(searchText) || brand.includes(searchText)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+
         $('#othermodel').hide();
         $('#othermodellabel').hide();
 
