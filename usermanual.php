@@ -7,6 +7,7 @@
             <input type="name" name="teacher" id="teacher" placeholder="Teacher">
             <input type="text" name="subject" id="subject" placeholder="Subject">
             <input type="datetime-local" name="datetime" id="datetime" placeholder="datetime">
+            <input type="hidden" name="uploader" value="<?php echo $_SESSION['login_name'] ?>">
             <input type="submit" value="Submit" class="btn btn-primary mr-2" name="submit">
         </form>
     </div>
@@ -31,6 +32,7 @@
                 <th>Teacher</th>
                 <th>Subject</th>
                 <th>Date time</th>
+                <th>Uploader</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -51,6 +53,7 @@
                     $fileDate = $row['upload_date'];
                     $teacher = $row['teacher'];
                     $sbj = $row['subj'];
+                    $uploader = $row['uploader'];
                     $datetime = $row['date_time'];
                     $fileDate = new DateTime($fileDate);
                     $fileDate = $fileDate->format('Y/m/d H:i');
@@ -79,6 +82,9 @@
                         </td>
                         <td>
                             <?php echo $formattedDate ?>
+                        </td>
+                        <td>
+                            <?php echo $uploader ?>
                         </td>
                         <td><a href='download.php?file=<?php echo $fileName ?>'>Download</a></td>
                     </tr>

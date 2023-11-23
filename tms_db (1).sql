@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 10:06 AM
+-- Generation Time: Nov 23, 2023 at 10:46 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -153,16 +153,18 @@ CREATE TABLE `files` (
   `subj` varchar(255) DEFAULT NULL,
   `ftype` varchar(50) DEFAULT NULL,
   `date_time` datetime DEFAULT NULL,
-  `dateup` datetime DEFAULT NULL
+  `dateup` datetime DEFAULT NULL,
+  `uploader` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `files`
 --
 
-INSERT INTO `files` (`id`, `filename`, `filepath`, `upload_date`, `teacher`, `subj`, `ftype`, `date_time`, `dateup`) VALUES
-(16, 'AMIS.xlsx', 'uploads/AMIS.xlsx', '2023-11-21 02:20:22', 'Pajar', 'Intro', 'xlsx', '2023-11-21 10:20:00', '2023-11-21 10:20:22'),
-(17, 'Github.xlsx', 'uploads/Github.xlsx', '2023-11-21 02:33:23', 'hello', 'sd', 'xlsx', '2023-11-21 10:33:00', '2023-11-21 10:33:23');
+INSERT INTO `files` (`id`, `filename`, `filepath`, `upload_date`, `teacher`, `subj`, `ftype`, `date_time`, `dateup`, `uploader`) VALUES
+(16, 'AMIS.xlsx', 'uploads/AMIS.xlsx', '2023-11-21 02:20:22', 'Pajar', 'Intro', 'xlsx', '2023-11-21 10:20:00', '2023-11-21 10:20:22', NULL),
+(17, 'Github.xlsx', 'uploads/Github.xlsx', '2023-11-21 02:33:23', 'hello', 'sd', 'xlsx', '2023-11-21 10:33:00', '2023-11-21 10:33:23', NULL),
+(18, 'suntek.png', 'uploads/suntek.png', '2023-11-23 05:25:42', 'Ojacastro', 'sample', 'png', '2023-11-23 13:25:00', '2023-11-23 13:25:42', 'Vince Candole');
 
 -- --------------------------------------------------------
 
@@ -240,7 +242,7 @@ CREATE TABLE `project_list` (
 --
 
 INSERT INTO `project_list` (`id`, `name`, `description`, `status`, `start_date`, `end_date`, `manager_id`, `user_ids`, `date_created`) VALUES
-(9, 'Install Windows 10 in MTCL 1', '						&lt;p&gt;												&lt;span style=&quot;font-family: Tahoma;&quot;&gt;﻿&lt;/span&gt;&lt;span style=&quot;font-family: Tahoma;&quot;&gt;Please install a windows 10 in all PCs in MTCL 1, make sure the windows 10 that already installed is working properly before the deadline.&lt;/span&gt;										&lt;/p&gt;					', 0, '2023-11-08', '2023-11-30', 8, '7', '2023-11-08 22:50:01'),
+(9, 'Install Windows 10 in MTCL 1', '												&lt;p&gt;												&lt;span style=&quot;font-family: Tahoma;&quot;&gt;﻿&lt;/span&gt;&lt;span style=&quot;font-family: Tahoma;&quot;&gt;Please install a windows 10 in all PCs in MTCL 1, make sure the windows 10 that already installed is working properly before the deadline.&lt;/span&gt;										&lt;/p&gt;										', 5, '2023-11-23', '2023-11-30', 8, '7', '2023-11-08 22:50:01'),
 (10, 'Move monitor to MTCL3', 'Please make it on time', 0, '2023-11-09', '2023-11-11', 8, '7', '2023-11-09 09:34:12'),
 (11, 'task1', 'dsds', 0, '2023-11-11', '2023-11-12', 8, '7', '2023-11-11 22:10:32');
 
@@ -317,8 +319,8 @@ CREATE TABLE `task_list` (
 
 INSERT INTO `task_list` (`id`, `project_id`, `task`, `description`, `status`, `date_created`) VALUES
 (18, 9, 'Installing windows 10', '								please installed windows 10 in pcs 1 to 10						', 3, '2023-11-08 22:58:34'),
-(19, 9, 'Remove the pcs that is not compatible', 'removing the pcs that is not compatible and label it.', 1, '2023-11-08 23:13:57'),
-(20, 9, 'Clean all the pcs', '				make sure to clean all the pcs			', 2, '2023-11-08 23:20:09'),
+(19, 9, 'Remove the pcs that is not compatible', '				removing the pcs that is not compatible and label it.			', 3, '2023-11-08 23:13:57'),
+(20, 9, 'Clean all the pcs', '								make sure to clean all the pcs						', 3, '2023-11-08 23:20:09'),
 (21, 9, 'Install Packet Tracer', '								as soon as possible						', 3, '2023-11-09 10:15:26');
 
 -- --------------------------------------------------------
@@ -495,7 +497,7 @@ ALTER TABLE `dtr`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `items`
